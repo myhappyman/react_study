@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+modifier 함수에 매개변수로 어떤 값을 넣든 항상 그 값으로 업데이트를하고 리렌더링을 일으킨다.
+비구조화 할당으로 첫번째 값과, 두번째 수정해주는 함수가 이런식으로 사용하기 위함이다.
+초기값에따라 데이터를 받고, 그 값을 최초 로드하면서 노출시킨다.
+변경된 값이 발생하여 modifier함수에 변경된 값을 입력하게 되면,
+counter에 변경된 값을 입력하고 자동으로 리렌더링을 처리한다.
+
+첫번째 처리값은 변수처럼 편하게 이름을 명명하고, 두번째 변경함수는 set변수명형태로 사용하는게 일반적이다.
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    function App(){
+        // const [counter, modifier] = React.useState(0);
+        const [counter, setCounter] = React.useState(0);
+        const onClick = ()=> {
+            setCounter(counter + 1);
+        }
+        return (
+            <div>
+                <h3>Total Clicks : {counter}</h3>
+                <button onClick={onClick}>Click me</button>
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
