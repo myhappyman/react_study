@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+    <!--
+React js의 규칙은 HTML을 마크업으로 직접 작성하지 않는다는 것이다.
+대신, Javascript를 활용하여 button태그, span태그 등의 element를 생성할 것이다.
+하지만 이번장에서는 일반적인 리액트의 사용법은 아니고 어려운 리액트 방식의
+element생성 방법을 확인해본다.
+
+리액트 관련 라이브러리를 import하였고, 그래서 리액트 문법을 사용할 수 있음.
+React JS : 어플을 인터렉티브하게 만들어주는 라이브러리
+React-dom : 라이브러리 또는 패키지인데, 모든 React Element들을 Html body에 넣게 해줌.
+ReactDOM.render(): React element들을 가지고 HTML에 배치한다.
+React.createElement(arg1, arg2): -arg1에는 생성하고자하는 element명
+                                 -arg2에는 property옵션을 줄수 있다.(class, name, id, event listener등)
+                                 -arg3에는 innerText 즉 내용을 입력한다.
+
+하지만 일반적인 리액트 개발을 하면서 위 방법들은 다신 할일은 없을 것이다.
+전반적인 리액트가 원초적으로 어떻게 돌아가는지 흐름도만 보도록 하자.
+
+겨우 빨간색 span생성을 위해 코드가 너무 많다고 생각한다면, 그 생각이 맞다.
+React import에 root생성에 스크립트의 작성등 너무 복잡해보인다.
+React JS는 그동안 작성해왔던 방식을 거꾸로 한다는 것을 설명하기 위한 예제였다.
+
+/**********************************************************/
+-기존의 방식(Html -> Javascript)
+HTML을 먼저 만들고 그걸 Javascript로 제어하여 HTML을 수정하는 식으로 진행이 된다.
+
+-React방식(Javascript -> Html)
+모든것이 Javascript로 시작한다. 작성된 Javascript로 HTML이 된다.
+
+즉 React방식은 업데이트가 필요한 element만 업데이트하는 방식으로 진행되며,
+유저에게 보여질 내용만 컨트롤할 수 있다. 이것이 핵심 내용이며,
+기존 방식대로 HTML을 먼저 생성하고 그걸 불러와서 제어하고 이런 행위는 하지 않고
+업데이트 해야하는 HTML만 업데이트하라고 React JS가 처리할 것이다.
+Javascript로 element를 생성하고 React JS가 그걸 HTMl로 만든다.
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script>
+    const root = document.getElementById("root");
+    const h3 = React.createElement(
+                                "h3", 
+                                {
+                                    id: "total_click",
+                                    style: {color: "red"},
+                                    onMouseEnter: () => console.log("mouse enter")
+                                    
+                                }, 
+                                "Total Click : ");
+    /* javascript로 생성할 element를 정의하고 이벤트를 달아서 HTML로 변환한다.*/
+    const btn = React.createElement(
+                                "button", 
+                                {
+                                    onClick: ()=> console.log("i'm click"),
+                                    style: {backgroundColor: "tomato"}
+                                }, 
+                                "Click me");
+    const container = React.createElement("div", null, [h3, btn]);
+    ReactDOM.render(container, root); //root에 div을 생성(render)하겠다.
+</script>
+</html>

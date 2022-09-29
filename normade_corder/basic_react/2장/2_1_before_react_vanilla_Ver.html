@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <span>Total clicks: 0</span>
+    <button id="btn">Click me</button>
+    <!--
+        간단한 마크업에 클릭 이벤트를 달았지만 제법 시간이 소요되고
+        많은 양의 코드가 들어간다.
+        그럭저럭 만족할만한 코드양과 기능이지만, 더욱 복잡해지고 양이 많아진다면
+        시간도 코드양도 방대해질것이다.
+    -->
+</body>
+<script>
+    let counter = 0;
+    const span = document.querySelector("span");
+    const button = document.getElementById("btn");
+    button.addEventListener("click", function(){
+        counter = counter + 1;
+        span.innerText = `Total clicks: ${counter}`;
+        console.log("i have been clicked");
+    });
+</script>
+</html>
