@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+2장에서 했던 리액트의 모습들을 복습한다.
+리액트를 사용하기 위해 React JS와 react-dom을 import하였다.
+React JS가 element를 생성하고 event listener를 추가하는것을 지원한다.
+react-dom 인터렉티브하게 작성한 React element들을 HTML로 바꿔야하기에 필요하다.
+
+React.createElement에서 태그를 생성하고 속성을 설정하고 내용을 정의할 수 있다.
+속성에는 id, class, name, css, event listener등을 설정할 수 있다.
+여기서 event listener의 적용방식이 react의 사용 이유이자 강점이며, 이벤트는
+onClick, onMouseEnter등과 같이 camel표기법 형태로 기재된다.
+
+하지만 2장까지는 기존의 HTML과 비슷해보이는 느낌이 있다.
+다음장부터는 다른형태로 작성을 해볼것이다.
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script>
+    const root = document.getElementById("root");
+    const h3 = React.createElement(
+                                "h3", 
+                                {
+                                    id: "total_click",
+                                    style: {color: "red"},
+                                    onMouseEnter: () => console.log("mouse enter")
+                                    
+                                }, 
+                                "Total Click : ");
+    /* javascript로 생성할 element를 정의하고 이벤트를 달아서 HTML로 변환한다.*/
+    const btn = React.createElement(
+                                "button", 
+                                {
+                                    onClick: ()=> console.log("i'm click"),
+                                    style: {backgroundColor: "tomato"}
+                                }, 
+                                "Click me");
+    const container = React.createElement("div", null, [h3, btn]);
+    ReactDOM.render(container, root); //root에 div을 생성(render)하겠다.
+</script>
+</html>
