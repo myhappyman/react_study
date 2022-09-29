@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+state 복습!
+데이터가 바뀔때마다 컴포넌트를 리렌더링하고 UI를 새로 갱신한다.
+React.js는 굉장히 똑똑하기때문에 우리가 아는 개념처럼 return하는 컴포넌트를 
+전부 다시 생성할것 같지만 사실은 변경된 부분만 변경되어 굉장히 UI처리에 효율적이다.
+
+state 사용법 추가 학습
+setCounter(counter + 1); 도 잘 동작이 되지만, 혹시 모를 다른곳에서
+counter의 변수의 값이 변경되어 꼬이는 경우가 발생할 수도 있다.
+이를 방지하기 위해 setCounter내부에 변수가 아닌 현재값의 값을 제어하는
+함수로 변경할 수도 있다.
+
+setCounter(counter + 1);  (x)
+setCounter(current => current + 1);   (o)
+
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    function App(){
+        const [counter, setCounter] = React.useState(0);
+        const onClick = ()=> setCounter(current => current + 1);
+        return (
+            <div>
+                <h3>Total Clicks : {counter}</h3>
+                <button onClick={onClick}>Click me</button>
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
