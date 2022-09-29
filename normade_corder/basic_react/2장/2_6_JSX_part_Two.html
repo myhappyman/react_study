@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+JSX 알아보기 - 2
+Title이라는 h3태그의 컴포넌트와 Button이라는 button태그의 컴포넌트를
+JSX의 문법형태로 합치는 방법을 알아봅니다.
+
+지켜야할 규칙은 원래의 html태그와 구분하기 위해서 작성한 컴포넌트의 
+이름의 첫글자는 대문자로 시작하게 작성한다.
+
+컴포넌트를 작성할때 함수후 중괄호가 아닌 소괄호로 열어주는 문법을
+사용중인데, 소괄호는 return을 한다는걸 전제로 작성하는것이고,
+중괄호로 작성하고 싶다면 {return ...} 형태로 작성하면 된다.
+
+마지막 컨테이너의 경우는 화살표함수 없이 작성되었는데, 함수형으로 작성하게
+되면 컨테이너를 일반 변수명으로 불러왔기떄문에 문제가 발생한다.
+함수형으로 변경하고 싶다면 ()=> 을 붙여주고 render부분에서 <Container/>로
+변경해주면 동작하는것을 볼 수 있다.
+
+즉 함수형으로 표기한 컨테이너는 JSX 문법으로만 호출할 수 있다.
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    const Title = () => (
+        <h3 id="title" onMouseEnter={()=> console.log("mouse enter")}>
+            Total Click : 
+        </h3>
+    );
+    const Button = () => (
+        <button onClick={()=> console.log("i'm click")}
+            style={{backgroundColor: "tomato"}}>
+            "Click me"
+        </button>
+    );
+    const Container = (
+        <div>
+            <Title/>
+            <Button/>
+        </div>
+    );
+    ReactDOM.render(<Container/>, root); //root에 div을 생성(render)하겠다.
+</script>
+</html>
