@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+이번장에서는 자동으로 리렌더링 처리가 될 수 있는 방법을 알아봅니다.
+기존에는 어떤 값을 변화시키고 처리할때 변수를 생성하고, 그 변수를
+입력해주는 형태로 처리하였는데, React.js에서는 리액트만의 규칙을 따르면,
+더욱 쉽게 값을 제어하고 리렌더링 처리를 할 수 있습니다.
+
+그게 바로 State!
+React.useState(초기값) -> [초기값, 값을변경하는 함수];
+로 이루어진 배열이 생성된다.
+생성된 useState값은 2개의 데이터를 가진 배열이기에 편하게 변수화 처리를 위해
+주로 비구조화 할당이라는 방식으로 처리한다.
+const fruite = ["apple", "berry"];
+const [apple, berry] = fruite; //각각 apple, berry라는 변수명에 순서대로 배열값이 대입된다.
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    function App(){
+        const [counter, modifier] = React.useState(0);
+        //다음장에서 modifier가 필요한 이유에 대해서 알아본다.
+        return (
+            <div>
+                <h3>Total Clicks : 0</h3>
+                <button>Click me</button>
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
