@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+state
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    const Container = (
+        <div>
+            <h3>Total Click : </h3>
+            <button>Click me</button>
+        </div>
+    );
+    ReactDOM.render(Container, root); //root에 div을 생성(render)하겠다.
+</script>
+</html>
