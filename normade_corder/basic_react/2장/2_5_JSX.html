@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+HTML과 유사하게 생긴 JSX에 대해 알아보자.
+기존에 React.createElement로 생성하던 방식과 비교를 해보면 얼마나 간단하고
+쉽게 element를 작성하고 HTML로 만들수 있는지 확인 할 수 있다.
+
+JSX를 작성하고 바로 실행하면 오류가 나는것을 볼 수 있는데, 브라우저가 JSX문법을
+바로 해석하지 못하기 때문이다. JSX의 코드를 변환해주기 위해 Babel을 사용한다.
+Babel을 사용하게 되면 작성한 JSX를 브라우저가 이해하는 형태로 변환(React.createElement)해주고 
+브라우저에서 내용을 확인 할 수 있게된다.
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    const Title = 
+    (
+        <h3 id="title" onMouseEnter={()=> console.log("mouse enter")}>
+            Total Click : 
+        </h3>
+    );
+    const Button = (
+        <button onClick={()=> console.log("i'm click")}
+            style={{backgroundColor: "tomato"}}>
+            "Click me"
+        </button>
+    );
+    const container = React.createElement("div", null, [Title, Button]);
+    ReactDOM.render(container, root); //root에 div을 생성(render)하겠다.
+</script>
+</html>
