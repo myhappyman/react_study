@@ -61,7 +61,7 @@ disabled처리를 토글형태로 활성화시켜서 입력값이 무엇인지 �
                     />
                 </div>
                 <button onClick={reset}>Reset</button>
-                <button onClick={onFlip}>Flip</button>
+                <button onClick={onFlip}>{flip ? "분변환기" : "시간변환기"}</button>
             </div>
         );
     }
