@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+분을 입력하면 시간이 갱신
+시간을 입력하면 분이 갱신되는 예제2
+
+토글형태의 Filp버튼을 작성하고 boolean값에 따라
+disabled처리를 토글형태로 활성화시켜서 입력값이 무엇인지 구분처리 작성
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    function App(){
+        const [amount, setAmount] = React.useState(0);
+        const [hours, setHours] = React.useState(0);
+        const [flip, setFlip] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+        }
+        const reset = () => {
+            setAmount(0);
+        }
+        const onFlip = () => {
+            reset();
+            setFlip(cur => !cur);
+        } //toggle처리
+        
+        return (
+            <div>
+                <h1>Super Converter!</h1>
+                <div>
+                    <label htmlFor="minutes">분</label>
+                    <input 
+                        value={flip ? amount*60 : amount} 
+                        id="minutes" 
+                        placeholder="Minutes" 
+                        type="number"
+                        onChange={onChange}
+                        disabled={flip}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="hours">시</label>
+                    <input 
+                        value={flip ? amount : Math.round(amount/60)}
+                        id="hours" 
+                        placeholder="Hours" 
+                        type="number"
+                        onChange={onChange}
+                        disabled={!flip}
+                    />
+                </div>
+                <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>Flip</button>
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
