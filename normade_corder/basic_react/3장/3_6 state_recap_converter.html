@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+컴포넌트 분기와 State복습
+App컴포넌트에서 직접 만들던 시,분 변환기를 별도의 MinutesToHours라는
+컴포넌트로 옮기고 해당 컴포넌트를 App컴포넌트에 넣어준다.
+이를 분할정복(divide and conquer)이라고 한다.
+
+그리고 새롭게 추가한 KmToMiles를 추가하면 2개의 컴포넌트를 랜더링하는 걸 볼 수 있다.
+컴포넌트를 성격별로 분기하고 App 컴포넌트는 그 안에 다른 2개의 컴포넌트를 렌더링한다.
+
+select 태그를 통해 option을 선택하는 값에 따라 원하는 변환기가 생성되는 예제를 작성합니다.
+
+
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    function MinutesToHours(){
+        const [amount, setAmount] = React.useState(0);
+        const [hours, setHours] = React.useState(0);
+        const [flip, setFlip] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+        }
+        const reset = () => {
+            setAmount(0);
+        }
+        const onFlip = () => {
+            reset();
+            setFlip(cur => !cur);
+        } //toggle처리
+        
+        return (
+            <div>
+                <div>
+                    <label htmlFor="minutes">분</label>
+                    <input 
+                        value={flip ? amount*60 : amount} 
+                        id="minutes" 
+                        placeholder="Minutes" 
+                        type="number"
+                        onChange={onChange}
+                        disabled={flip}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="hours">시</label>
+                    <input 
+                        value={flip ? amount : Math.round(amount/60)}
+                        id="hours" 
+                        placeholder="Hours" 
+                        type="number"
+                        onChange={onChange}
+                        disabled={!flip}
+                    />
+                </div>
+                <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>{flip ? "분변환기" : "시간변환기"}</button>
+            </div>
+        );
+    }
+
+    function KmToMiles(){
+        const [unit, setUnit] = React.useState(0);
+        const [flip, setFlip] = React.useState(false);
+        const onChange = (event) => {
+            setUnit(event.target.value)
+        }
+        const reset = ()=> setUnit(0);
+        const onFlip = ()=> setFlip(cur=>!cur)
+        return (
+            <div>
+                <h3>Km to Miles</h3>
+                <div>
+                    <label htmlFor="km"></label>
+                    <input 
+                        id="km"
+                        value={flip ? unit*1.609 : unit}
+                        type="number"
+                        placeholder="Km"
+                        onChange={onChange}
+                        disabled={flip}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="miles"></label>
+                    <input 
+                        id="miles"
+                        value={flip ? unit : unit/1.609}
+                        type="number"
+                        placeholder="Miles"
+                        onChange={onChange}
+                        disabled={!flip}
+                    />
+                </div>
+                <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>Flip</button>
+            </div>
+        )
+    }
+
+    function App(){
+        const [index, setIndex] = React.useState("0");
+        const onChange = (event) => {
+            console.log(event);
+            setIndex(event.target.value);
+        }
+        return (
+            <div>
+                <h1>Super Converter!</h1>
+                <select onChange={onChange}>
+                    <option value="0">Nothing</option>
+                    <option value="1">Minutes & Hours</option>
+                    <option value="2">Km & Miles</option>                    
+                </select>
+                <hr/>
+                {
+                    index === "0" ? <b>Please Select Option</b> : 
+                    index === "1" ? <MinutesToHours /> : <KmToMiles />
+                }
+                
+                
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
