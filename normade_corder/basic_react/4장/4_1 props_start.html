@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+props
+Props는 부모 컴포넌트에서 자식 컴포넌트로 데이터를 보내는 방식을 말한다.
+
+2개의 버튼이 있다고 가정했을때
+style이나 속성들이 같거나 비슷하고 텍스트만 다르다면 그 수많은 옵션들을 하나하나
+적어주는것은 코드양만 많아지고 복잡해지는 결과를 초래한다 이럴때 공통된 컴포넌트를 쓰면서
+내부의 텍스트만 바꿔준다면 어떨까?
+
+props를 통해 컴포넌트로 옵션을 전달해줄 수 있다.
+props는 첫번째 파라미터만 존재하며 컴포넌트가 전달받은 유일한 파라미터값이다.
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    // function Btn({btnText}){ //shortcut형태로 바로 받아서 쓴다.
+    function Btn(props){
+        const {btnText, big} = props;
+        return (<button
+            style={{
+                backgroundColor: "tomato",
+                color: "#fff",
+                padding: "10px 20px",
+                border: 0,
+                borderRadius:10,
+                fontSize : big ? 20 : 16,
+            }}
+        >{btnText}</button>);
+    }
+    
+    // function SaveBtn(){
+    //     return (<button
+    //         style={{
+    //             backgroundColor: "tomato",
+    //             color: "#fff",
+    //             padding: "10px 20px",
+    //             border: 0,
+    //             borderRadius:10
+
+    //         }}
+    //     >Save Changes</button>);
+    // }
+    // function ConfirmBtn(){
+    //     return (<button
+    //         style={{
+    //             backgroundColor: "tomato",
+    //             color: "#fff",
+    //             padding: "10px 20px",
+    //             border: 0,
+    //             borderRadius:10
+
+    //         }}
+    //     >Confirm</button>);
+    // }
+    function App(){
+        
+        return (
+            <div>
+                
+                <Btn btnText="Save Btn" big={true} testXValue="123"/>
+                <Btn btnText="Confirm"/>
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
