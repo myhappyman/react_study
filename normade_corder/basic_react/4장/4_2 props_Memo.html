@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+props
+props를 통해 각종 프로퍼티등을 보내고 처리할 수 있지만 제한된 부분이 있다.
+바로 이벤트 리스너, 스타일등 기존에 JSX를 통해 속성처리 하던 부분들을 바로 보낼수는 없다.
+
+ex) <Btn btnText={value} onClick={changeValue}/>  => 이것은 onClick처리가 된게 아니다.
+    > onClick이라는 속성의 props를 보낸것이다.
+
+이런 것들을 처리하고 싶다면 props로 전달하고 실제적으로 처리하는 컴포넌트에서 props를 받아와서
+기존에  JSX를 처리하던것처럼 데이터를 처리해야 실질적으로 동작한다.
+
+onClick에 동작할 함수를 전달해서 처리가 가능한것을 보면 알 수 있듯이, props에서는
+함수도 전달할수 있다.
+
+*****
+App에 있는 state인 value가 setValue에 의해 변경되면서 새로 렌더링이 된다.
+이때 자식 컴포넌트가 리렌더링이되는걸 볼 수 있다.
+
+여기서 두번째 Btn의 경우는 변경 될 필요가 없는데 불필요하게 변경되는 모습을 볼 수 있는데,
+이런 처리를 위해 React.Memo라는것을 사용한다.
+이런 처리를하면 props가 변경된 컴포넌트만 리-렌더링이 처리되는 걸 볼 수 있다.
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    function Btn({btnText, changeValue}){
+        console.log(btnText)
+        return (<button
+            onClick={changeValue}
+            style={{
+                backgroundColor: "tomato",
+                color: "#fff",
+                padding: "10px 20px",
+                border: 0,
+                borderRadius:10
+            }}
+        >{btnText}</button>);
+    }
+    
+    const MemorizedBtn = React.memo(Btn);
+
+    function App(){
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = ()=> setValue("Revert Changes");
+        return (
+            <div>                
+                <MemorizedBtn btnText={value} changeValue={changeValue}/>
+                <MemorizedBtn btnText="Confirm" />
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
