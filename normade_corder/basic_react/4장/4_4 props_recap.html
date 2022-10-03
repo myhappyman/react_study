@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+props recap
+props에 대한 복습
+1. props는 컴포넌트에 속성형태로 변수명처럼 이름을 지어서 전달할 수 있다.
+전달하면 실제로 동작하는 컴포넌트의 첫번째 arg에 object형태로 들어간다.
+es6문법에 의해 첫번째 파라미터에 object를 각각 받을 수 있는 {}로 전개하여
+각각의 성값들을 이름으로 받아서 사용한다.
+
+* object에서 속성명을 쓰려면 일치해야하듯이
+컴포넌트에 넣은 이름과 실제 컴포넌트에서 받는 이름은 동일하게 사용해야 한다.
+
+2. props로 전달할때 협업이나 복잡해지면 string을 보낼 곳에 number를 보내거나
+실수를 하게 되어있는데 이걸 막기위해 PropTypes를 통해 타입을 정의하고 오류를 발생시킬 수 있으며,
+필수로 입력해야하는 속성값이 있다면 PropTypes.-.isRequired를 통해 강제할 수 있다.
+
+3. Memo를 통해 불필요하게 리렌더링 되는 컴포넌트를 제어할 수 있다.
+
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    function Btn({btnText, changeValue, fontSize = 14}){
+        return (<button
+            onClick={changeValue}
+            style={{
+                backgroundColor: "tomato",
+                color: "#fff",
+                padding: "10px 20px",
+                border: 0,
+                borderRadius:10,
+                fontSize
+            }}
+        >{btnText}</button>);
+    }
+    
+    const MemorizedBtn = React.memo(Btn);    
+    MemorizedBtn.propTypes={
+        // btnText: PropTypes.string,
+        // fontSize: PropTypes.number
+        btnText: PropTypes.string.isRequired,
+        fontSize: PropTypes.number
+    }
+
+    function App(){
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = ()=> setValue("Revert Changes");
+        return (
+            <div>                
+                <MemorizedBtn btnText={value} changeValue={changeValue} fontSize={18}/>
+                <MemorizedBtn btnText={"Text"}/>
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
