@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- ReactDOM이 React element들을 가져다 놓기 위해 생성 -->
+    <div id="root"></div>
+    <!--
+props types
+props으로 다양한 데이터(string, number, 함수 등)를 전달할 수 있지만, 
+정수형에는 정수형만 문자열에는 문자열만 보내야한다고 표기하고 싶다면 어떻게 해야할까?
+
+리액트에서는 PropTypes라는 패키지를 제공한다.
+제공하는 형태는 다양하다.
+object, number, string, array 등등등
+PropTypes.string,
+PropTypes.array
+잘못된 타입을 넣게되면 console에서 1차적으로 에러를 통해 확인 할 수 있다.
+
+
+필수적 옵션을 넣고 싶다면
+PropTypes.string.isRequired
+    -->
+
+
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    
+    function Btn({btnText, changeValue, fontSize = 14}){
+        return (<button
+            onClick={changeValue}
+            style={{
+                backgroundColor: "tomato",
+                color: "#fff",
+                padding: "10px 20px",
+                border: 0,
+                borderRadius:10,
+                fontSize
+            }}
+        >{btnText}</button>);
+    }
+    
+    const MemorizedBtn = React.memo(Btn);    
+    MemorizedBtn.propTypes={
+        // btnText: PropTypes.string,
+        // fontSize: PropTypes.number
+        btnText: PropTypes.string.isRequired,
+        fontSize: PropTypes.number
+    }
+
+    function App(){
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = ()=> setValue("Revert Changes");
+        return (
+            <div>                
+                <MemorizedBtn btnText={value} changeValue={changeValue} fontSize={18}/>
+                <MemorizedBtn btnText={"Text"}/>
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
