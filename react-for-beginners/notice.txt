@@ -1,0 +1,13 @@
+1. create-react-app을 통해서 리액트 프로젝트를 생성할 수 있다.
+
+아주 간단한 페이지와 함께 리액트 개발 구조로 생성이 된다.
+
+해당 프로젝트 구동을 위해선 npm start, npm run start등의 명령어로 실행시킬수 있다.
+자동으로 os상 설정된 브라우저가 열리는걸 확인 할 수 있다.
+
+동작 명령 관련 package.json > scripts > start 관련
+
+2. 생성된 디렉토리 구조 내 src에 모든 개발 파일들을 집어넣는다.
+가장 중요한 파일은 index.js다.
+
+create-react-app은 어플리케이션을 가지고 여기 i
