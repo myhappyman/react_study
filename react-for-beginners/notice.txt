@@ -35,3 +35,15 @@ css파일을 만들고 꾸미 요소를 css로 꾸미고, 해당 css파일을 in
 'xxx.module.css'로만 파일명이 끝나면 된다.
 
 심지어 css들의 class명이 동일해도 css들이 다르다면 중복되지 않고 별도의 class로 구분되어 동작한다.
+
+
+5. useEffect
+이벤트등의 행위로 리렌더링이 일어날때 컴포넌트가 최초에 한번 render되고 
+이후에 변경된 컴포넌트만 동작하게 하고 싶다면?
+state가 변할때마다 컴포넌트 자체가 다시 그려지는데 
+그렇게 페이지가 구성되고 복잡한 페이지라면 브라우저에 부하가 발생할수 있다.
+
+useEffect는 2개의 파라미터를 가진다.
+@effect: 한번만 실행되고 싶은 코드를 넣는다.
+@deps: 
+function useEffect(effect, deps);
