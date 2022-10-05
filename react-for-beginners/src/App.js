@@ -1,54 +1,50 @@
 import { useState, useEffect } from "react";
-import Button from "./Button";
-import styles from "./App.module.css";
 
 /**
- * App
+ * CleanUp function에 대하여 알아보자 
  * 
- * Recap
- * react.js useEffect 복습
- * react의 가장 멋진 점은 바로 새로운 데이터가 생기면
- * 컴포넌트를 새로고침해주는데, 우리가 직접할 필요없이 리액트 생태계에 따른
- * 문법 규칙만 지키면 알아서 새로고침을 해준다는게 아주 편하고 좋다.
- * 하지만 작성한 컴포넌트 안에서도 한번만 실행하고 싶은 부분이 있을수도 있는데,
- * 이때는 useEffect를 통해 원하는 동작을 처리할 수 있다.
- * useEffect에는 두개의 파라미터가 존재하고
- * 첫번째 파라미터는 동작할 코드
- * 두번째 파라미터에는 감시할 대상(state)를 지정할 수 있다.
+ * (- component는 단지 jsx를 return하는 함수일 뿐이다.
+ * 컴포넌트 사용을 위한 구분을 위해 항상 대문자로 시작하도록 하자!
+ * )
  * 
- * 감시할 대상에 변화가 발생하면 동작할 코드만 새로 동작한다.
+ * state값 showing의 toggle형 boolean값으로 Hello라는
+ * 컴포넌트를 보여주고 안보여주고 처리하는 예제이다.
+ * useEffect를 통해 초기 생성시에만 console.log를 출력하는 예제라서
+ * showing이 될 때마다 console.log가 찍히는데, showing이 false일때
+ * 즉 컴포넌트가 destroy될때는 아무 일도 일어나지 않는다.
+ * 이때 destroy될 때에 대한 처리도 할 수 있는데, useEffect에 
+ * function을 return 처리하면 된다.
  * 
- * @returns 
+ * 여기선 해당 컴포넌트가 사라질때이므로 감시하는 대상이 빈 배열에서 return을 해주게되면
+ * 해당 컴포넌트가 사라질때 destroyed가 발생하는 걸 볼 수 있다.
+ * 이처럼 컴포넌트가 사라질때 처리하는걸 CleanUp function이라고 부른다. 
+ * 
+ * (정상동작하지 않는다면 index.js의 React.StrictMode모드를 제거한다.
+ * React.StrictMode 모드는 개발 과정 중 안전을 위해 켜지는 기능이며 배포시에는 사라진다고 한다.)
+ * 
+ * 
+ * 
  */
-function App() {
-  const [counter, setCounter] = useState(0);
-  const [keyword, setKeyword] = useState("");
-  const onClick = () => setCounter(cur => cur + 1);
-  const onChange = (event) => setKeyword(event.target.value);
-  // console.log("App called");
-  const iRunOnlyOnce = () => {
-    console.log("I run only once.");
-  }
-  useEffect(iRunOnlyOnce, []); //페이지가 로드되었을때 iRunOnlyOnce라는 함수만 한번 동작한다.
-  useEffect(()=>{ //keyword state에 변화가 발생할때만 동작한다.
-    if(keyword !== "" && keyword.length > 6){
-      console.log("I run when 'keyword' changes");
-    }
-  }, [keyword]);
-  useEffect(()=>{ //keyword state에 변화가 발생할때만 동작한다.
-    console.log("I run when 'counter' changes");
-  }, [counter]);
 
-  useEffect(()=>{ //keyword, counter state에 변화가 발생하면 동작한다.
-    console.log("I run when 'counter' & 'keyword' changes");
-  }, [counter, keyword]);
+function Hello(){
+  useEffect(()=>{
+    console.log("created!");
+    return () => console.log("destroyed!"); //컴포넌트가 사라지면 발생한다.
+  }, []); //한번 초기화시에만 부르겠다는 뜻
+  return <h1>Hello</h1>
+}
+
+
+function App() {
+  const [showing, setShowing] = useState(false);
+  const onClick = ()=> setShowing((prev) => !prev);
   return (
     <div>
-      <input type="text" onChange={onChange} value={keyword} placeholder="Search here..." />
-      <h1 className={styles.title}>Welcome back!</h1>
-      <p>{counter}</p>
+      {
+        showing ? <Hello /> : null
+      }
       
-      <button onClick={onClick}>Click me</button>
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
     </div>
   );
 }
