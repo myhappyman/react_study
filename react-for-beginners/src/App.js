@@ -2,64 +2,63 @@ import { useState, useEffect } from "react";
 
 /**
  * App
+ * 암호화페 관련 미니 프로젝트를 시작한다.
+ * 단순하게 암호화페 종류와 그 가격을 나열하게 될 것이다.
  *
- * 프로젝트 시작
- * 그동안 배운 state, props, effect등등 react기술들을 활용하여 프로젝트를 작성하고
- * 기술을 복습하고 습득하는 시간을 갖는다.
+ * 1. 페이지에 접근하면 로딩 메시지가 보인다.
+ * 2. 코인들이 나열되면 로딩 메시지를 숨기고 코인 리스트를 보여준다.
  *
- * state의 값은 state에 직접적으로 절대 바꾸지 않는다. (그렇기 때문에 const로 선언하는것으로 보인다.)
- * 그동안은 number, string, boolean타입의 간단한 변수들을 set함수를 통해
- * 이전값에 변경하거나 증감, 감소 등의 연산을 해보았는데, array라면 어떻게 제어해야할까?
- *
- * array라고 set함수에 바로 push를하지 않는다.
- * es6문법인 spread 연산을 통해 이전값과 새로운값으로 새로운 배열을 만들고 그 배열을 대입해줌으로써
- * array값인 state를 수정한다.
- *
- * array데이터 표출하기
- * array 데이터를 jsx에서 노출시킬때는 map을 사용한다.
- * map은 array의 데이터들을 순회하면서 각 데이터를 원하는 형태로 return하기에
- * 데이터를 출력할때 사용하기에 매우 용이한 함수이다.
- *
- * 다만 map을 통해 원하는 태그형태로 jsx를 출력하면 리액트에서 오류를 뿜어내는데
- * 반복문을 통해 출력한 리스트형태의 데이터들은 각각 key라는 속성을 가지도록 제안한다.
- *
- * 추후 데이터를 수정, 삭제할때 사용하기 위함이다.
- *
- * @returns
+ * -------------------------
+ * 추가 과제
+ * ul, li 리스트를 select option으로 변경하고
+ * 각 선택된 option값의 해당하는 암호화페값을 20달러로 몇개까지 살수 있는지 예제를 작성해보자
  */
 
 function App() {
-  const [toDo, setToDo] = useState("");
-  const [toDos, setToDos] = useState([]);
-  const onChange = (event) => setToDo((prev) => event.target.value);
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (!toDo || toDo === "") {
-      return;
+  const haveUSD = 20;
+  const [loading, setLoading] = useState(true);
+  const [coins, setCoins] = useState([]);
+  const [selectCoinName, setSelectCoinName] = useState("");
+  const [transeCnt, setTranseCnt] = useState(0);
+  useEffect(() => {
+    fetch("https://api.coinpaprika.com/v1/tickers")
+      .then((response) => response.json())
+      .then((json) => {
+        setCoins(json);
+        setLoading(false);
+      });
+  }, []);
+
+  const onChange = (event) => {
+    const select = event.target.value;
+    if (select) {
+      const selects = select.split(":");
+      setSelectCoinName(selects[0]);
+      setTranseCnt(Math.floor(haveUSD / selects[1]));
     }
-    console.log(toDo);
-    setToDos((currentArray) => [...currentArray, toDo]);
-    setToDo("");
   };
 
   return (
     <div>
-      <h1>오늘 나의 할일({toDos.length})</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          onChange={onChange}
-          value={toDo}
-          type="text"
-          placeholder="Write your to do..."
-        />
-        <button>Add To Do</button>
-      </form>
-      <hr />
-      <ul>
-        {toDos.map((todo, index) => (
-          <li key={index}>{todo}</li>
+      <h1>The Coins({coins.length})</h1>
+      {loading ? <strong>Loading...</strong> : null}
+      <p>
+        당신이 소유한 ${haveUSD}로 살수 있는 {selectCoinName}의 개수는{" "}
+        {transeCnt}
+        개입니다.
+      </p>
+      <select onChange={onChange}>
+        <option value="">데이터를 선택하세요.</option>
+        {coins.map((coin, index) => (
+          <option
+            key={index}
+            name={coin.name}
+            value={coin.name + ":" + coin.quotes.USD.price}
+          >
+            {coin.name}({coin.symbol}) :{coin.quotes.USD.price} USD
+          </option>
         ))}
-      </ul>
+      </select>
     </div>
   );
 }
