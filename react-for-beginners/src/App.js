@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
+import styles from "./Reset.module.css";
 
 /**
  * 라우터에는 두가지 종류가 있다.
@@ -23,13 +24,21 @@ import Detail from "./routes/Detail";
  * 모든 페이지가 재실행되는걸 볼 수 있고 그런 행위를 피하고 싶기 때문이다.
  * 페이지 이동을 위해선 Link 컴포넌트와 to prop을 사용하는데, 이렇게 이동하면
  * 새로고침 되지 않고 페이지의 내용만 변경되는걸 볼 수 있다.
+ *
+ *
+ * 이동하려는 경로에 파라미터 형태로 동적변수를 처리하기 위해서는
+ * "/path/:var"; 형태인 ':'를 넣는다.
+ *
  * @returns
  */
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/movie" element={<Detail />} />
+        <Route path="/hello" element={<h1>Hello!</h1>} />
+      </Routes>
+      <Routes>
+        <Route path="/movie/:id" element={<Detail />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Home />} />

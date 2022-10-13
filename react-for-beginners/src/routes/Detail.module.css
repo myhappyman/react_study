@@ -1,0 +1,10 @@
+.container{width: 100%;}
+.box50{
+    width: calc(50% - 2rem);
+    padding: 1rem;
+    float: left;
+}
+.leftBox img{float: right; max-width: 40rem}
+.title{margin: 1rem 0;}
+.year{margin: 1rem 0;}
+.movieInfo li{margin: 0.3rem 0; font-size: 0.8rem}

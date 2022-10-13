@@ -1,12 +1,19 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-function Movie({ coverImage, title, summary, genres }) {
+/**
+ * 어떤 영화인지 구분값으로 사용하기 위해서 props로 id값을
+ * 전달하고 es6 ``문법으로 Link값을 처리한다.
+ *
+ * @param {*} param0
+ * @returns
+ */
+function Movie({ id, coverImage, title, summary, genres }) {
   return (
     <div>
       <img src={coverImage} alt={title} />
       <h2>
-        <Link to="/movie">{title}</Link>
+        <Link to={`/movie/${id}`}>{title}</Link>
       </h2>
       <p>{summary}</p>
       <ul>
@@ -19,6 +26,7 @@ function Movie({ coverImage, title, summary, genres }) {
 }
 
 Movie.propTypes = {
+  id: PropTypes.number.isRequired,
   coverImage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,

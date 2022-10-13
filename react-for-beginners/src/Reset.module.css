@@ -1,0 +1,139 @@
+@charset "utf-8";
+/* Webfont rules */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700");
+
+/* Reset */
+*{font-display:swap;}
+*:not(input){font-family:"Noto Sans KR";}
+
+/* base rules */
+*,*::before,*::after {box-sizing:border-box;}
+html {-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;width:100%;}
+body,h1,h2,h3,h4,p,figure,blockquote,dl,dd {margin:0;}
+body {scroll-behavior:smooth;text-rendering:optimizeSpeed;}
+ul,ol {margin:0;padding:0;list-style:none}
+a {text-decoration:none;color:inherit;cursor:pointer}
+button {background-color:transparent;color:inherit;border-width:0;padding:0;cursor:pointer}
+img {max-width:100%;display:block;}
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {-webkit-appearance:none}
+input,button,textarea,select {font: inherit;}
+:not(input){-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;}
+textarea {-webkit-user-select:auto;user-select:auto;}
+:focus {outline:0;}
+table {border-collapse:collapse;border-spacing:0;}
+th, td {padding:0;}
+fieldset,img {border:0;}
+
+/* REM rules */
+html {font-size:5px;}
+@media screen and (min-width: 216px){
+   html {font-size:6px;}
+}
+@media screen and (min-width: 229px){
+   html {font-size:6.3611px;}
+}
+@media screen and (min-width: 250px){
+   html {font-size:6.9444px;}
+}
+@media screen and (min-width: 252px){
+   html {font-size:7px;}
+}
+@media screen and (min-width: 288px){
+   html {font-size:8px;}
+}
+@media screen and (min-width: 292px){
+   html {font-size:8.1111px;}
+}
+/* iphone 5 */
+@media screen and (min-width: 320px){
+   html {font-size:8.8888px;}
+}
+@media screen and (min-width: 324px){
+   html {font-size:9px;}
+}
+@media screen and (min-width: 360px){
+   html {font-size:10px;}
+}
+/* iphone 6 */
+@media screen and (min-width: 375px) {
+   html {font-size:10.4166px;}
+}
+/* iphone 12, 12Pro */
+@media screen and (min-width: 390px) {
+   html {font-size:10.8334px;}
+}
+@media screen and (min-width: 396px) {
+   html {font-size:11px;}
+}
+@media screen and (min-width: 411px) {
+   html {font-size:11.4166px;}
+}
+@media screen and (min-width: 412px) {
+   html {font-size:11.4444px;}
+}
+/* iphone 6 Plus */
+@media screen and (min-width: 414px) {
+   html {font-size:11.5px;}
+}
+/* iphone 12 Pro Max */
+@media screen and (min-width: 428px) {
+   html {font-size:11.8889px;}
+}
+@media screen and (min-width: 432px) {
+   html {font-size:12px;}
+}
+@media screen and (min-width: 468px) {
+   html {font-size:13px;}
+}
+@media screen and (min-width: 504px) {
+   html {font-size:14px;}
+}
+@media screen and (min-width: 540px) {
+   html {font-size:15px;}
+}
+@media screen and (min-width: 576px) {
+   html {font-size:16px;}
+}
+@media screen and (min-width: 612px) {
+   html {font-size:17px;}
+}
+@media screen and (min-width: 648px) {
+   html {font-size:18px;}
+}
+@media screen and (min-width: 684px) {
+   html {font-size:19px;}
+}
+@media screen and (min-width: 720px) {
+   html {font-size:20px;}
+}
+@media screen and (min-width: 1080px) {
+   html {font-size:30px;}
+}
+/*280*/
+@media screen and (min-width: 640px){
+   .horizontal_ui {font-size:7.7777px;}
+}
+/*315*/
+@media screen and (min-width: 720px){
+   .horizontal_ui {font-size:8.75px;}
+}
+/*350*/
+@media screen and (min-width: 800px){
+   .horizontal_ui {font-size:9.7222px;}
+}
+/*428.75*/
+@media screen and (min-width: 980px){
+   .horizontal_ui {font-size:11.9097px;}
+}
+/*448*/
+@media screen and (min-width: 1024px){
+   .horizontal_ui {font-size:12.4444px;}
+}
+/*560*/
+@media screen and (min-width: 1280px){
+   .horizontal_ui {font-size:15.5555px;}
+}
