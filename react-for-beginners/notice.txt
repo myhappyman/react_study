@@ -52,3 +52,35 @@ function useEffect(effect, deps);
 
 useEffect를 통해 한번만 동작시키거나 특정 state만 변화되었을때 동작시키거나
 감시를 통해 특정 어떤것들이 변화에 대하여 제어를 할 수 있다.
+
+
+6. gh-pages 라이브러리를 설치하고 사용하여 개발한 리액트 프로젝트를 배포하였다.
+github페이지에 바로 배포용으로 처리해준다.
+6-0. npm i gh-pages로 설치한다.
+6-1. 설치 후 가장 먼저 package.json에 scripts를 확인한다.
+6-2. package.json에 build라는 script가 있다.
+이 script를 실행하게되면 웹사이트의 production ready code를 생성한다.
+(production ready란 코드를 압축하고 최적화 시킨다는 의미)
+build 실행법은 > npm run build
+작성한 파일을 압축하고 최적하기 때문에 제법 시간이 소요된다.
+
+동작이 완료되면 build라는 못보던 폴더가 생성된다.
+이상한 파일명의 js와 열어보면 알수없는 압축된 스크립트들이 잔득 보인다.
+(소스들이 브라우저가 이해할 수 있는 언어로 최적화시키고 압축되었기 때문이다.)
+
+빌드가 완료되면 해당 빌드된 폴더를 Github Page에 push해서 올려야한다.
+파일을 올리기 위해 package.json 맨끝에 "homepage"라는 키값과 실제 깃허브 페이지를 올릴
+레포지토리 주소를 입력한다. 
+"homepage" : "https://github아이디.github.io/repository이름";
+(먼저 깃허브 페이지에 레포지토리부터 만든다~)
+
+이후 scripts쪽에 deploy를 추가한다.
+"deploy": "gh-pages -d build"
+deploy는 방금 설치한 gh-pages를 활용하여 github에 빌드파일을 올려주는 일을한다.
+
+하지만 build를 하고 난 다음에 deploy를 해야한다는걸 기억하고 싶지 않기때문에
+predeploy command를 추가한다.
+"predeploy": "npm run build"
+
+여기까지 설정이 완료되면 
+"npm run deploy"로 배포를 해본다.

@@ -1,0 +1,20 @@
+.clear{clear:both;}
+.clear:after{content:""; display:block; clear:both;}
+.left{float: left;}
+.right{float: right;}
+
+.card_box{
+    padding: 20px;
+    border: 1px solid #222;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.card_box > .left{width: 230px;}
+.card_box > .right{
+    width: calc(100% - 230px);
+    padding-left: 20px;
+}
+/* '~'은 해당하는 노드에 첫번째를 제외하고 마지막까지 동일하게 처리하기 위해 사용
+ * 더이상 first-child, last-child로부터 해방이라구
+ */
+.card_box ~ .card_box{margin-top: 10px;}

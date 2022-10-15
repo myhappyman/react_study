@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import styles from "./Movie.module.css";
 
 /**
  * 어떤 영화인지 구분값으로 사용하기 위해서 props로 id값을
@@ -10,17 +11,21 @@ import { Link } from "react-router-dom";
  */
 function Movie({ id, coverImage, title, summary, genres }) {
   return (
-    <div>
-      <img src={coverImage} alt={title} />
-      <h2>
-        <Link to={`/movie/${id}`}>{title}</Link>
-      </h2>
-      <p>{summary}</p>
-      <ul>
-        {genres.map((g) => (
-          <li key={g}>{g}</li>
-        ))}
-      </ul>
+    <div className={`${styles.card_box} ${styles.clear}`}>
+      <div className={styles.left}>
+        <img src={coverImage} alt={title} />
+      </div>
+      <div className={styles.right}>
+        <h2>
+          <Link to={`${process.env.PUBLIC_URL}/movie/${id}`}>{title}</Link>
+        </h2>
+        <p>{summary}</p>
+        <ul>
+          {genres.map((g) => (
+            <li key={g}>{g}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

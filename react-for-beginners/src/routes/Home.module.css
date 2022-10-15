@@ -1,0 +1,12 @@
+.wrap{min-width: 1000px;}
+
+
+
+/* Local Navi bar
+ * 넓이를 원하는 값으로 잡고 높이를 100vh로하면 무한대로 왼쪽영역이 잡힘.
+ * position fixed값 필수
+ */
+.lnb{width: 280px; height: 100vh; background-color: blue; position: fixed;}
+.container{width: calc(100% - 280px); margin-left: 280px;}
+.header{height: 60px; background-color: #c4c4c4;}
+.main{padding: 20px;}

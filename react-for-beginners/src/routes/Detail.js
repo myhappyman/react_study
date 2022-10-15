@@ -73,7 +73,7 @@ function Detail() {
         </div>
       )}
       <button>
-        <Link to={`/`}>목록</Link>
+        <Link to={`${process.env.PUBLIC_URL}/`}>목록</Link>
       </button>
     </div>
   );
