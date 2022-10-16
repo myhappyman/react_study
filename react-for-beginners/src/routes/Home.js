@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Movie from "../components/Movie";
-import styles from "./Home.module.css";
+import LeftNavigatorBar from "../components/LeftNavigatorBar";
+import Header from "../components/Header";
+import styles from "../components/Common.module.css";
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -24,9 +26,9 @@ function Home() {
         <h1>Loading...</h1>
       ) : (
         <div className={styles.wrap}>
-          <div className={styles.lnb}></div>
+          <LeftNavigatorBar />
           <div className={styles.container}>
-            <div className={styles.header}></div>
+            <Header />
             <div className={styles.main}>
               {movies.map((m) => (
                 <Movie

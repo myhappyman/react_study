@@ -5,9 +5,11 @@
 
 .card_box{
     padding: 20px;
-    border: 1px solid #222;
     border-radius: 8px;
     overflow: hidden;
+    border: 1px solid #fff;
+    color: #000;
+    box-shadow: 3px 3px 3px 3px #eee;
 }
 .card_box > .left{width: 230px;}
 .card_box > .right{
@@ -17,4 +19,15 @@
 /* '~'은 해당하는 노드에 첫번째를 제외하고 마지막까지 동일하게 처리하기 위해 사용
  * 더이상 first-child, last-child로부터 해방이라구
  */
-.card_box ~ .card_box{margin-top: 10px;}
+.card_box ~ .card_box{margin-top: 30px;}
+.card_box p {
+    font-size: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word; 
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical
+ }
+ .card_box .genres{margin-top: 20px; float: left; font-size: 18px; color: rgb(98, 0, 255)}
+ .card_box .genres ul li{float: left;}

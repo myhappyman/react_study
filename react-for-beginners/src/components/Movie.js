@@ -20,11 +20,19 @@ function Movie({ id, coverImage, title, summary, genres }) {
           <Link to={`${process.env.PUBLIC_URL}/movie/${id}`}>{title}</Link>
         </h2>
         <p>{summary}</p>
-        <ul>
-          {genres.map((g) => (
-            <li key={g}>{g}</li>
-          ))}
-        </ul>
+        <div className={styles.genres}>
+          <ul>
+            <li>Genres : [</li>
+            {genres.map((g, idx) =>
+              idx + 1 === genres.length ? (
+                <li key={g}>{g}</li>
+              ) : (
+                <li key={g}>{g},&nbsp;</li>
+              )
+            )}
+            <li>]</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
