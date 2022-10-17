@@ -2,14 +2,17 @@
 .clear:after{content:""; display:block; clear:both;}
 .left{float: left;}
 .right{float: right;}
-
+.scale{transform: scale(1.05); transition: .5s;}
 .card_box{
+    flex: 1 1 40%;
+    margin: 30px;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 15px;
     overflow: hidden;
     border: 1px solid #fff;
     color: #000;
-    box-shadow: 3px 3px 3px 3px #eee;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
 }
 .card_box > .left{width: 230px;}
 .card_box > .right{
@@ -19,7 +22,8 @@
 /* '~'은 해당하는 노드에 첫번째를 제외하고 마지막까지 동일하게 처리하기 위해 사용
  * 더이상 first-child, last-child로부터 해방이라구
  */
-.card_box ~ .card_box{margin-top: 30px;}
+/* .card_box ~ .card_box{margin: 30px;} */
+.card_box img{box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);}
 .card_box p {
     font-size: 20px;
     text-overflow: ellipsis;

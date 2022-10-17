@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./Movie.module.css";
@@ -10,8 +11,23 @@ import styles from "./Movie.module.css";
  * @returns
  */
 function Movie({ id, coverImage, title, summary, genres }) {
+  const [scale, setScale] = useState(false);
+  function onMouseEnter() {
+    setScale(true);
+  }
+
+  function onMouseLeave() {
+    setScale(false);
+  }
+
   return (
-    <div className={`${styles.card_box} ${styles.clear}`}>
+    <div
+      className={`${styles.card_box} ${styles.clear} ${
+        scale ? styles.scale : null
+      }`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <div className={styles.left}>
         <img src={coverImage} alt={title} />
       </div>
@@ -22,7 +38,7 @@ function Movie({ id, coverImage, title, summary, genres }) {
         <p>{summary}</p>
         <div className={styles.genres}>
           <ul>
-            <li>Genres : [</li>
+            <li>[</li>
             {genres.map((g, idx) =>
               idx + 1 === genres.length ? (
                 <li key={g}>{g}</li>

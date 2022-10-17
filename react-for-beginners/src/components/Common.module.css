@@ -15,4 +15,4 @@
 .header .title{width: 200px; float: left;}
 .header .menu{width: calc(100% - 240px); font-size: 14px; padding: 20px;}
 .header .menu span{margin: 0 20px;}
-.main{padding: 20px;background-color: #fff;}
+.main{padding: 20px;background-color: #fff; display: flex; flex-wrap: wrap;}
